@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/home', function () {
+    $username = "ogunlade adebayo" ;
+    $school = "SQI" ;
+    // with method
+    // return view('home')->with('username', $username) ;
+    // compact method
+    // return view('home', compact("username", "school")) ;
+    // direct method
+    return view('home', [
+         "username" => 'ogunlade adebayo',
+        "school" => 'SQI',
+        "state" => "lagos",
+        "level" => "500 level"
+    ]);
+    // return "hello world" ;
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::post('/register', function (Request $req) {
+    // return $req->input('fullname') ;
+    return $req->input('email') ;
+
 });
