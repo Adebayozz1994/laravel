@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Controllers\Usercontroller;
+
+
 
 
 /*
@@ -38,8 +41,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::post('/register', function (Request $req) {
-    // return $req->input('fullname') ;
-    return $req->input('email') ;
-
+Route::post('/register',[UserController::class, 'registerUser']);
+// Route::post('/login',[UserController::class, 'loginUser']);
+Route::get('/login', function () {
+    return view('login');
 });
+    
+

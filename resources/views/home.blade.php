@@ -6,11 +6,16 @@
   </form>
 @endsection
 @section('content')
-   <div class="card mx-auto shadow-sm px-2 my-3">
+   <div class="card mx-auto shadow-sm px-2 my-3 col-6">
     <div class="header">
          <h5 class="text-center mx-auto">Signup form</h5>
     </div>
     <div class="card body">
+      @if (isset($message))
+      <div class="alert alert-success text-center">
+         {{$message}}
+      </div>
+      @endif
             <form action="/register" method="post">
                 @csrf
                 <div class="form group mb-2">
@@ -23,7 +28,7 @@
                  </div>
                  <div class="form group mb-2">
                     <label for="">Phone number</label>
-                    <input type="text" class="form-control" placeholder="Enter your phone number" name="phone" id="phone" >
+                    <input type="text" class="form-control" placeholder="Enter your phone number" name="phone_number" id="phone_number" >
                  </div>
                  <div class="form group mb-2">
                     <label for="">Password</label>
