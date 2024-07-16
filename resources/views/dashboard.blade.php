@@ -1,5 +1,5 @@
 
 @extends('nav')
 @section('content')
-    <h1>Dashboard</h1>
+    <h1>Na me be Dashboard !!!</h1>
 @endsection

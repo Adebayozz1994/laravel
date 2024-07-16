@@ -42,9 +42,24 @@ Route::get('/dashboard', function () {
 });
 
 Route::post('/register',[UserController::class, 'registerUser']);
-// Route::post('/login',[UserController::class, 'loginUser']);
-Route::get('/login', function () {
+
+route::get('login', function(){
     return view('login');
 });
+
+    Route::post('/login',[UserController::class, 'loginUser']);
+    // return view('login');
+    // return "hello world" ;
+
+
+
+    Route::get('/forgotPassword', function(){
+        return view('forgotPassword');
+        // return 'hello' ;
+    });
+    Route::post('/forgotPassword',[UserController::class, 'resetPassword']);
+    return view('forgotPassword');
+
+
     
 
