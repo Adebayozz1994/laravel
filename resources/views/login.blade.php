@@ -57,4 +57,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var messageElement = document.getElementById('alert-message');
+        if (messageElement) {
+            var timeout = {{ session('message_timeout', 3000) }};
+            setTimeout(function() {
+                messageElement.style.display = 'none';
+            }, timeout);
+        }
+    });
+</script>
+
 @endsection

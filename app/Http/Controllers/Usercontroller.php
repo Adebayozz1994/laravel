@@ -53,7 +53,6 @@ class Usercontroller extends Controller
             return view('login')->with('message',"Invalid email or not registered");
         }
 
-       
     }
        
     public function resetPassword (Request $req) {
@@ -63,15 +62,18 @@ class Usercontroller extends Controller
             //     // 'password' => Hash::make($req->password)
             // ]);
             // return redirect('login');
-    $user = User::where('email', $req->email);
-    if ($user) {
-        $user->update([
-            'password' =>$req->password
+    $user = User::where('email', $req->email)->update([
+        'password' => $req->password
+    ]);
+    if(!$user){
+        return redirect()->back()->with([
+            'message' => 'Invalid email or not registered',
+            'message_timeout' => 3000
         ]);
-        // return redirect ('login');
-    } else {
-        return view('forgotPassword')->with('message',"Invalid email or not registered");
+    }else{
+        return redirect('login');
     }
+   
         }
 
 }

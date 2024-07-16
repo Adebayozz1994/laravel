@@ -1,9 +1,9 @@
 @extends('nav')
 
 @section('content')
-@if (isset($message))
-<div class="alert alert-success text-center">
-   {{$message}}
+@if (session('message'))
+<div class="alert alert-success text-center" id="alert-message">
+   {{ session('message') }}
 </div>
 @endif
 <div class="container mt-5">
@@ -36,4 +36,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var messageElement = document.getElementById('alert-message');
+        if (messageElement) {
+            var timeout = {{ session('message_timeout', 3000) }};
+            setTimeout(function() {
+                messageElement.style.display = 'none';
+            }, timeout);
+        }
+    });
+</script>
 @endsection

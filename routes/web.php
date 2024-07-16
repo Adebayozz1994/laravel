@@ -58,7 +58,7 @@ route::get('login', function(){
         // return 'hello' ;
     });
     Route::post('/forgotPassword',[UserController::class, 'resetPassword']);
-    return view('forgotPassword');
+    // return view('forgotPassword');
 
 
     
