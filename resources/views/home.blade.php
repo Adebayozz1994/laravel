@@ -18,21 +18,45 @@
       @endif
             <form action="/register" method="post">
                 @csrf
+                
                 <div class="form group mb-2">
                    <label for="">Full Name</label>
                    <input type="text" class="form-control" placeholder="Enter your full name" name="fullname" id="fullname" >
+                   @if ($errors->get('fullname'))
+                        <div class="text-danger text-center bold">
+                            {{$errors->first('fullname')}}
+                        </div>
+                   @endif
                 </div>
+
+                <div class="form group mb-2">
+                    <label for="">Phone number</label>
+                    <input type="text" class="form-control" placeholder="Enter your phone number" name="phone_number" id="phone_number" >
+                    @if ($errors->get('phone_number'))
+                    <div class="text-danger text-center bold">
+                        {{$errors->first('phone_number')}}
+                    </div>
+                     @endif
+                 </div>
+
                 <div class="form group mb-2">
                     <label for="">Email Address</label>
                     <input type="text" class="form-control" placeholder="Enter your email address" name="email" id="email" >
+                    @if ($errors->get('email'))
+                    <div class="text-danger text-center bold">
+                        {{$errors->first('email')}}
+                    </div>
+                    @endif
                  </div>
-                 <div class="form group mb-2">
-                    <label for="">Phone number</label>
-                    <input type="text" class="form-control" placeholder="Enter your phone number" name="phone_number" id="phone_number" >
-                 </div>
+               
                  <div class="form group mb-2">
                     <label for="">Password</label>
                     <input type="password" class="form-control" placeholder="Enter your password" name="password" id="password" >
+                    @if ($errors->get('password'))
+                    <div class="text-danger text-center bold">
+                        {{$errors->first('password')}}
+                    </div>
+                    @endif
                  </div>
                  <div class="form group mb-2">
                     <button class="btn btn-primary w-100" type="submit">Sign up</button>
