@@ -19,7 +19,8 @@ class Usercontroller extends Controller
     ]);
 
     if($validate->fails()){
-        return view('home')->with('errors', $validate->errors());
+        // return view('home')->with('errors', $validate->errors());
+        return back()->withErrors($validate)->withInput();
     }else{
         $user = new User;
         $user->fullname = $req->fullname;
@@ -51,12 +52,14 @@ class Usercontroller extends Controller
 
         if(auth::attempt($details)){
             $req->session()->regenerate();
-            return view('dashboard');
+            return redirect('/dashboard');
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ])->withInput(['email', 'password']);
+            'password' => 'password is not correct.',
+
+        ])->withInput();
     
 
 
@@ -110,6 +113,36 @@ class Usercontroller extends Controller
         return redirect('login');
     }
    
+        }
+
+        public function uploadPicture(Request $req) {
+        //    return $req->profile_picture;
+        $file = $req->file('profile_picture');
+        // $name = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        $userId = Auth::id();
+        $newProfilePicture = time().$userId.'.'.$extension;
+        $storePicture = $req->file('profile_picture')->storeAs('public/profile_picture', $newProfilePicture);
+        if($storePicture){
+            $updateProfilePIc = User::where('id', $userId)->update([
+                'profile_picture' => $newProfilePicture
+            ]);
+            if($updateProfilePIc){
+                // return view('dashboard')->with('message', 'Profile picture updated successfully')->with('status', true);
+                return redirect('/dashboard');
+            }else{
+                return view('dashboard')->with('message', 'Profile picture not updated')->with('status', false);
+            
+            }
+        }
+        // return $storePicture;
+        // return $newProfilePicture;
+        // Auth::id();
+        // Auth()->user()->id;
+        // return $name;
+        // return $extenson;
+
+        
         }
 
 }

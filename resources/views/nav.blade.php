@@ -38,7 +38,7 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            @yield('search')
+            @yield('profile_picture')
           </div>
         </div>
       </nav>

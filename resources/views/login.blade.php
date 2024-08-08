@@ -38,11 +38,21 @@
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{old('email')}}">
+                            @if ($errors->get('email'))
+                            <div class="text-danger text-center bold">
+                                {{$errors->first('email')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{old('password')}}">
+                            @if ($errors->get('password'))
+                            <div class="text-danger text-center bold">
+                                {{$errors->first('password')}}
+                            </div>
+                            @endif
                         </div>
                         <div>
                             <a href="/forgotPassword">forgotPassword</a>
@@ -51,7 +61,7 @@
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <small class="text-muted">Don't have an account? <a href="/dashboard">Sign up</a></small>
+                    <small class="text-muted">Don't have an account? <a href="/home">Sign up</a></small>
                 </div>
             </div>
         </div>

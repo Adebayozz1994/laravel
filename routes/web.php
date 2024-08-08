@@ -61,5 +61,5 @@ route::get('login', function(){
     // return view('forgotPassword');
 
 
-    
+    Route::post('/uploadProfilePic',[Usercontroller::class, 'uploadPicture']);
 
