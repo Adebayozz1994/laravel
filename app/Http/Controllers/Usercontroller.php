@@ -145,4 +145,12 @@ class Usercontroller extends Controller
         
         }
 
+        public function logout(Request $req){
+            Auth::logout();
+            $req->session()->invalidate();
+            $req->session()->regenerateToken();
+            return redirect('/login');
+        
+        }
+
 }

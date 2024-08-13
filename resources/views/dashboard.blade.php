@@ -2,10 +2,14 @@
 @extends('nav')
 @section('profile_picture')
     <img src="{{ asset('storage/profile_picture/'.auth()->user()->profile_picture)}}" data-bs-toggle="modal" data-bs-target="#exampleModal" alt="profile_picture" class="profile-picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-    {{-- <p class="text-danger">{{auth()->user()->fullname}}</p> --}}
-@endsection
-
-@section('content')
+    <form action="/logout" method="post">
+      @csrf
+      <button class="btn btn-light" type="submit">Log out</button>
+    </form>
+    @endsection
+    
+    @section('content')
+    <p class="text-danger">{{auth()->user()->fullname}}</p>
 @if(isset($message))
     <div class="{{$status ? 'text-success' : 'text-danger'}} mx-auto mt-3 p-3 rounded">
         {{$message}}

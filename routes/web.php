@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Usercontroller;
-
-
-
+use App\Http\Middleware\EnsureUserIsAuthenticated;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +38,13 @@ Route::get('/home', function () {
 });
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->Middleware(EnsureUserIsAuthenticated::class);
 
 Route::post('/register',[UserController::class, 'registerUser']);
+// Route::get('/register', function(){
+//     return view('register');
+// });
+
 
 route::get('login', function(){
     return view('login');
@@ -63,3 +66,13 @@ route::get('login', function(){
 
     Route::post('/uploadProfilePic',[Usercontroller::class, 'uploadPicture']);
 
+    Route::post ('logout',[UserController::class, 'logout']);
+
+        //for group middleware
+    Route::middleware(EnsureUserIsAuthenticated::class)->group(function(){
+        Route::get('/dashboard', function(){
+            return view('dashboard');
+        });
+        // Route::post('/uploadProfilePic',[Usercontroller::class, 'uploadPicture']);
+
+    });
