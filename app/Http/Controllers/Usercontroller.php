@@ -153,4 +153,12 @@ class Usercontroller extends Controller
         
         }
 
+        public function registerFromVue(Request $req){
+            return response()->json([
+                'message' => 'Register from vue',
+                'status' => true
+            ]);
+        
+        }
+
 }

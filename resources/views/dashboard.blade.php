@@ -10,6 +10,7 @@
     
     @section('content')
     <p class="text-danger">{{auth()->user()->fullname}}</p>
+    <img src="" alt="">
 @if(isset($message))
     <div class="{{$status ? 'text-success' : 'text-danger'}} mx-auto mt-3 p-3 rounded">
         {{$message}}
